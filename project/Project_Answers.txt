@@ -1,0 +1,58 @@
+			     EE 109  - Spring 2023
+				  Rangefinder
+
+
+Review Question 1 (Cost Analysis):
+
+Assume we are building 1000 units of this system.  Use the provided part
+numbers (see the webpage) and the digikey.com or jameco.com website to find the
+total **cost per unit** (again assume we build a quantity of 1000 units) for
+these range finding systems.  Itemize the part costs (list each part and its
+unit cost when bought in units of 1000) and then show the final cost per unit
+below.  Note: You only need to price the components used in the project (not
+all the components in your lab kit.  Also, you do not need to account for the
+cost of the circuit board or wires. In a real environment we would manufacture
+a PCB (Printed Circuit Board). As an optional task, you can search online for
+PCB manufacturers and what the costs and options are in creating a PCB.
+
+Costs Per unit:
+LCD Shield: $8.90
+Arduino: $27.60
+Resistor 1: $0.01144
+Resistor 2: $0.01144
+Resistor 3: $0.01144
+Pushbutton:  $1.75000
+SN74HCT125N: $0.24160
+SN74HCT00N: $0.27200
+Rotary Encoder: $2.34420
+Rotary Encoder Knob: $0.84
+Buzzer: $0.47797
+Rotary Encoder: $4.76
+Ultrasonic Rangefinder: $3.95000
+RGB LED: $0.09
+
+Total Cost Per Unit: $51.26009
+
+
+
+
+
+Review Question 2 (Health/Safety/Reliability)
+
+Assume this system was to be used in a real industrial monitoring application.
+
+Considering reliability, health, and safety...
+
+ - What scenarios might you suggest testing (considering both HW and SW) 
+    before releasing the product for use? 
+I would try to "break" the product by doing as many permutations of complex input operations possible. For example, we could press multiple buttons at the same time to determine if the product will get stuck (such as two ISR's having flags set to 1 at the same time could reveal bugs in the code). There may also be other unexpected sequences that occur, such as the device still taking readings behind the scenes even when it is in the "out of range" state.
+
+
+
+ - How might you make your design more reliable? By reliability we don't just
+   mean keeping it running correctly (though you should consider that), but
+   also how you can detect that a connected component has failed to gracefully
+   handle such situations.  You can consider both HW and SW points of failure,
+   issues related to the operational environment, etc. and how to mitigate
+   those cases.
+Keeping the software organized into separate sections and subsections for each layer of the entire project is the key to ensuring reliable bug fixes. For the hardware aspect, adding additional wiring to nodes such as the RGB LED, rangefinder inputs/outputs, etc. to detect if the correct signals can be produced would help to ensure that no hardware issues have occurred. For instance, having a short program to test each of these components on the program's startup could allow the program to find hardware issues before trying to look for software issues by comparing the actual results to the expected results. The user could also be interacted in this process by asking for their feedback, such as by trying to display specific colors on the LED and asking the user which color appears. For the rangefinder, a simple ruler and test object could be included in the kit and used by the user on startup to ensure that the rangefinder is working properly.
